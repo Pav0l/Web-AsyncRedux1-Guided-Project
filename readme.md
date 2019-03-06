@@ -11,7 +11,7 @@
 # Requirements
 We need `node` & `npm`, as well as packages `live-server` and `eslint` installed _globally_. VSCode's `eslint` extension is recommended. Command line commands are run inside the project folder. This guide uses npm but should work the same using yarn.
 
-# Necessary enppoints
+# Necessary endpoints
   * We need working enpoints on mockable.io or similar:
   * GET /quotes endpoint, serving quotes:
     ```javascript
