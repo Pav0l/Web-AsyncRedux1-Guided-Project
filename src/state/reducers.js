@@ -4,8 +4,7 @@ import * as types from './actionTypes';
 export function quotes(quotesArray = [], action) {
   switch (action.type) {
     case types.ADD_QUOTES:
-      // implement case
-      return quotesArray;
+      return action.payload;
     case types.ADD_QUOTE:
       return quotesArray.concat(action.payload);
     case types.DELETE_QUOTE:
@@ -27,12 +26,11 @@ export function quoteOfTheDay(quoteId = null, action) {
 }
 
 export function spinner(isOn = false, action) {
-  // implement
   switch (action.type) {
     case types.SPINNER_ON:
-      return isOn === action.payload ? true : isOn;
+      return true;
     case types.SPINNER_OFF:
-      return isOn === action.payload ? false : isOn;
+      return false;
     default:
       return isOn;
   }

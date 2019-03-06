@@ -1,18 +1,55 @@
 import uuid from 'uuid';
 import * as types from './actionTypes';
 
-
+// react think allows us to create actionCreaters that return
+// FUNCTIONS instead of objects
+// dispatch allows you to run other action creators from within the function
 export const deleteQuoteAsync = id => dispatch => {
-// implement
+  dispatch(spinnerOn());
+  fetch(`http://gabe.mockable.io/quotes/${id}`, {
+    method: 'DELETE',
+  })
+    .then(res => res.json())
+    .then(data => {
+      dispatch(deleteQuote(data.id/*or just 'id' from arg */));
+      dispatch(spinnerOff());
+    });
 };
 
 export const getQuotesAsync = () => dispatch => {
-// implement
+  dispatch(spinnerOn());
+  fetch('http://gabe.mockable.io/quotes')
+    .then(res => res.json())
+    .then(quotes => {
+      dispatch({ type: types.ADD_QUOTES, payload: quotes });
+      dispatch(spinnerOff());
+    });
 };
 
 export const addQuoteAsync = quote => dispatch => {
-// implement
+  dispatch(spinnerOn());
+  fetch('http://gabe.mockable.io/quotes', {
+    method: 'POST',
+    body: JSON.stringify(quote),
+  })
+    .then(res => res.json())
+    .then(quote => {
+      dispatch({ type: types.ADD_QUOTE, payload: quote });
+      dispatch(spinnerOff());
+    });
 };
+
+export function spinnerOn() {
+  return {
+    type: types.SPINNER_ON,
+  };
+}
+
+export function spinnerOff() {
+  return {
+    type: types.SPINNER_OFF,
+  };
+}
 
 export function deleteQuote(id) {
   return {
