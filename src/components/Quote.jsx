@@ -29,8 +29,8 @@ export default class Quote extends React.Component {
         <div className='text'>{quote.text}</div>
         <em className='author'>{quote.author}</em>
         <div>
-          <button onClick={Function.prototype /* fix */}>Delete</button>
-          <button onClick={Function.prototype /* fix */}>Make Quote of the Day</button>
+          <button onClick={() => deleteQuoteAsync(quote.id)}>Delete</button>
+          <button onClick={() => makeQuoteOfTheDay(quote.id)}>Make Quote of the Day</button>
         </div>
       </StyledQuote>
     );
