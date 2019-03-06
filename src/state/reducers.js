@@ -28,5 +28,12 @@ export function quoteOfTheDay(quoteId = null, action) {
 
 export function spinner(isOn = false, action) {
   // implement
-  return isOn;
+  switch (action.type) {
+    case types.SPINNER_ON:
+      return isOn === action.payload ? true : isOn;
+    case types.SPINNER_OFF:
+      return isOn === action.payload ? false : isOn;
+    default:
+      return isOn;
+  }
 }
